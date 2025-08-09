@@ -31,13 +31,16 @@
 }
 
 .book-detail {
-  display: flex;
-  gap: 20px;
+  display: block;
   margin-top: 20px;
 }
 .book-cover {
-  max-width: 250px;
+  display: block;
+  width: 100%;
+  max-width: 360px;
+  height: auto;
   border-radius: 6px;
+  margin-bottom: 16px;
 }
 .book-info {
   max-width: 600px;
