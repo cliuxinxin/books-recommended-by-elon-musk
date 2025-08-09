@@ -12,8 +12,7 @@ title: "Elon Musk Book Recommendations"
   </div>
 
   <div class="book-grid">
-  {% assign sorted_books = site.books | sort: 'title' %}
-  {% for book in sorted_books %}
+  {% for book in site.books %}
     {% include book-card.html book=book %}
   {% endfor %}
   </div>

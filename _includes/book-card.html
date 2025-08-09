@@ -1,24 +1,17 @@
 <div class="book-card">
-  <a href="{{ site.baseurl }}{{ book.url }}" class="card-cover-wrapper">
+  <a href="{{ site.baseurl }}{{ book.url }}">
     {% if book.cover %}
       <img src="{{ site.baseurl }}{{ book.cover }}" alt="{{ book.title }} cover" class="card-cover">
     {% endif %}
-    {% if book.year %}
-      <span class="year-badge">{{ book.year }}</span>
-    {% endif %}
+    <h3>{{ book.title }}</h3>
   </a>
-
-  <a href="{{ site.baseurl }}{{ book.url }}"><h3>{{ book.title }}</h3></a>
-
   {% if book.author %}
-    <p class="author">{{ book.author }}</p>
+    <p class="author">{{ book.author }}{% if book.year %} ({{ book.year }}){% endif %}</p>
   {% endif %}
-
   {% if book.quote %}
-    <blockquote class="card-quote clamp-3">“{{ book.quote }}”</blockquote>
+    <blockquote class="card-quote">{{ book.quote }}</blockquote>
   {% endif %}
-
   {% if book.source %}
-    <a class="btn source-link-btn" href="{{ book.source }}" target="_blank" rel="noopener">🔗 Original Tweet</a>
+    <a class="source-link" href="{{ book.source }}" target="_blank" rel="noopener">🔗 Original Tweet</a>
   {% endif %}
 </div>
