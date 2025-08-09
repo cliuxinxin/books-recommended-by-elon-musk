@@ -1,7 +1,7 @@
 <div class="book-card">
-  <a href="{{ book.url }}">
+  <a href="{{ site.baseurl }}{{ book.url }}">
     {% if book.cover %}
-      <img src="{{ book.cover }}" alt="{{ book.title }} cover" class="card-cover">
+      <img src="{{ site.baseurl }}{{ book.cover }}" alt="{{ book.title }} cover" class="card-cover">
     {% endif %}
     <h3>{{ book.title }}</h3>
   </a>
