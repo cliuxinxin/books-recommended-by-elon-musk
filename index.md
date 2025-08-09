@@ -3,14 +3,18 @@ layout: default
 title: "Elon Musk Book Recommendations"
 ---
 
-<h1>📚 Elon Musk Book Recommendations</h1>
-
-<p>Books recommended by Elon Musk, with his original comments and links to the source on X/Twitter.</p>
-
 <link rel="stylesheet" href="{{ site.baseurl }}/assets/style.css">
 
-<div class="book-grid">
-{% for book in site.books %}
-  {% include book-card.html book=book %}
-{% endfor %}
+<div class="container">
+  <div class="hero">
+    <h1>📚 Elon Musk Book Recommendations</h1>
+    <p>Curated list of books Elon Musk has recommended. Each card includes his quote and the original source.</p>
+  </div>
+
+  <div class="book-grid">
+  {% assign sorted_books = site.books | sort: 'title' %}
+  {% for book in sorted_books %}
+    {% include book-card.html book=book %}
+  {% endfor %}
+  </div>
 </div>
