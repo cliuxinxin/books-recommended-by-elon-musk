@@ -109,6 +109,14 @@ OVERRIDES = {
     },
 }
 
+# Wikipedia title overrides for better summary hits
+WIKI_OVERRIDES = {
+    "The Culture Series": "Culture (series)",
+    "The Skeptics' Guide to the Universe": "The Skeptics' Guide to the Universe (book)",
+    "Lying": "Lying (book)",
+    "Daemon": "Daemon (novel)",
+}
+
 
 def read_list_blocks(list_path: Path):
     raw = list_path.read_text(encoding="utf-8")
@@ -168,6 +176,60 @@ def openlibrary_search(title: str):
             return docs[0] if docs else None
     except Exception:
         return None
+
+
+def openlibrary_fetch_description_by_key(work_or_book_key: str) -> str | None:
+    # work_or_book_key like "/works/OL123W" or "/books/OL123M"
+    url = f"https://openlibrary.org{work_or_book_key}.json"
+    try:
+        with urllib.request.urlopen(url, timeout=15) as resp:
+            data = json.loads(resp.read().decode("utf-8"))
+            desc = data.get("description")
+            if isinstance(desc, dict):
+                desc = desc.get("value")
+            if isinstance(desc, str):
+                # Normalize whitespace and trim
+                desc = re.sub(r"\s+", " ", desc).strip()
+                return desc
+    except Exception:
+        return None
+    return None
+
+
+def openlibrary_fetch_summary(doc: dict) -> str | None:
+    # Prefer work description, fallback to edition description
+    work_key = doc.get("key")  # typically a work key like /works/OLxxxW
+    if isinstance(work_key, str):
+        desc = openlibrary_fetch_description_by_key(work_key)
+        if desc:
+            return desc
+    edition_keys = doc.get("edition_key") or []
+    for ek in edition_keys[:2]:  # try first two editions
+        if isinstance(ek, str):
+            desc = openlibrary_fetch_description_by_key(f"/books/{ek}")
+            if desc:
+                return desc
+    return None
+
+
+def wikipedia_fetch_summary(title: str) -> str | None:
+    # REST API summary endpoint
+    api_title = title
+    url = f"https://en.wikipedia.org/api/rest_v1/page/summary/{urllib.parse.quote(api_title)}"
+    req = urllib.request.Request(url, headers={"User-Agent": "books-recommended-bot/1.0"})
+    try:
+        with urllib.request.urlopen(req, timeout=15) as resp:
+            data = json.loads(resp.read().decode("utf-8"))
+            extract = data.get("extract")
+            if isinstance(extract, str) and extract.strip():
+                # Use first 800 chars to keep it concise
+                text = extract.strip()
+                if len(text) > 800:
+                    text = text[:797].rstrip() + "..."
+                return text
+    except Exception:
+        return None
+    return None
 
 
 def download_cover(cover_id: int, dest_path: Path) -> bool:
@@ -244,11 +306,17 @@ def main():
             year = (override.get("year") if override and override.get("year") else doc.get("first_publish_year"))
             canonical_title = (override.get("canonical_title") if override and override.get("canonical_title") else (doc.get("title") or title_from_list))
             cover_id = doc.get("cover_i")
+            summary_text = openlibrary_fetch_summary(doc)
+            if not summary_text:
+                # Try Wikipedia summary
+                wiki_title = WIKI_OVERRIDES.get(canonical_title, canonical_title)
+                summary_text = wikipedia_fetch_summary(wiki_title)
         else:
             author = override.get("author") if override else None
             year = override.get("year") if override else None
             canonical_title = (override.get("canonical_title") if override and override.get("canonical_title") else title_from_list)
             cover_id = None
+            summary_text = None
 
         # Choose filename based on canonical title
         filename_base = safe_filename(canonical_title)
@@ -286,7 +354,7 @@ def main():
             "year": year,
             "quote": info.get("quote"),
             "source": info.get("source"),
-            "summary": "",
+            "summary": summary_text or "",
             "cover": cover_rel,
         }
         write_book_file(md_path, frontmatter)
