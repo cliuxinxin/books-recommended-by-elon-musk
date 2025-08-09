@@ -31,17 +31,21 @@
 }
 
 .book-detail {
-  display: block;
+  display: block !important;
   margin-top: 20px;
 }
-.book-cover {
-  display: block;
+.book-detail .book-cover {
+  display: block !important;
+  float: none !important;
   width: 100%;
   max-width: 360px;
   height: auto;
   border-radius: 6px;
-  margin-bottom: 16px;
+  margin: 0 0 16px 0;
 }
-.book-info {
+.book-detail .book-info {
+  display: block !important;
   max-width: 600px;
+  width: 100%;
+  margin: 0;
 }
