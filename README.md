@@ -3,7 +3,7 @@
 A collaborative list of books recommended by Elon Musk, with his original quotes and links to the source.
 
 ## How to Add a Book
-1. Create a new `.md` file in the `books/` directory.
+1. Create a new `.md` file in the `_books/` directory.
 2. Name the file with a short name, e.g. `life-3.0.md`.
 3. Upload a cover image to `assets/cover/` with the same name, e.g. `life-3.0.jpg`.
 4. Fill in the front matter:
