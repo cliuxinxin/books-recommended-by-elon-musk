@@ -4,6 +4,6 @@ author: "Iain Banks"
 year: 1988
 quote: "Player of Games is a great book"
 source: "https://x.com/elonmusk/status/1854075922183278763"
-summary: "The Culture - a human/machine symbiotic society - has thrown up many great Game Players, and one of the greatest is Gurgeh. Jernau Morat Gurgeh. The Player of Games. Master of every board, computer, and strategy. Bored with success, Gurgeh travels to the Empire of Azad, cruel and incredibly wealthy, to try their fabulous game ... a game so complex, so like life itself, that the winner becomes emperor. Mocked, blackmailed, almost murdered, Gurgeh accepts the game, and with it the challenge of his life - a very possibly his death."
+summary: "The Player of Games is a science fiction novel by Scottish writer Iain M. Banks, first published in 1988. It was the second published Culture novel. A film version was planned by Pathé in the 1990s, but was abandoned."
 cover: "/assets/cover/ThePlayerofGames.jpg"
 ---

@@ -4,6 +4,6 @@ author: "Edward Gibbon"
 year: 1776
 quote: "The actual Roman Empire, especially the decline & fall. The 1946 edition of Gibbon has the best book spine art I’ve ever seen."
 source: "https://x.com/elonmusk/status/1706124002505158988"
-summary: "Gibbon's masterpiece, which narrates the history of the Roman Empire from the second century a.d. to its collapse in the west in the fifth century and in the east in the fifteenth century, is widely considered the greatest work of history ever written. This abridgment retains the full scope of the original, but in a compass equivalent to a long novel. Casual readers now have access to the full sweep of Gibbon's narrative, while instructors and students have a volume that can be read in a single term. This unique edition emphasizes elements ignored in all other abridgments--in particular the role of religion in the empire and the rise of Islam.From the Trade Paperback edition."
+summary: "The History of the Decline and Fall of the Roman Empire, sometimes shortened to Decline and Fall of the Roman Empire, is a six-volume work by the English historian Edward Gibbon. The six volumes cover, from 98 to 1590, the peak of the Roman Empire, the history of early Christianity and its emergence as the Roman state religion, the Fall of the Western Roman Empire, the rise of Genghis Khan and Tamerlane and the fall of Byzantium, as well as discussions on the ruins of Ancient Rome."
 cover: "/assets/cover/The History of the Decline and Fall of the Roman Empire.jpg"
 ---

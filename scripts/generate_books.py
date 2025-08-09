@@ -307,10 +307,11 @@ def main():
             canonical_title = (override.get("canonical_title") if override and override.get("canonical_title") else (doc.get("title") or title_from_list))
             cover_id = doc.get("cover_i")
             summary_text = openlibrary_fetch_summary(doc)
-            if not summary_text:
-                # Try Wikipedia summary
-                wiki_title = WIKI_OVERRIDES.get(canonical_title, canonical_title)
-                summary_text = wikipedia_fetch_summary(wiki_title)
+            # Prefer Wikipedia summary when available to avoid mismatches (e.g., "One of Us Is Lying")
+            wiki_title = WIKI_OVERRIDES.get(canonical_title, canonical_title)
+            wiki_summary = wikipedia_fetch_summary(wiki_title)
+            if wiki_summary:
+                summary_text = wiki_summary
         else:
             author = override.get("author") if override else None
             year = override.get("year") if override else None
@@ -369,7 +370,6 @@ def main():
         "History of the Decline and Fall of the Roman Empire Complete and Unabridged.md",
         "Liftoff.md",
         "On Writing.md",
-        "The capitalist manifesto.md",
         "The Road to Sefdom.md",
         "The Story of Civilization I.md",
     ]
