@@ -7,7 +7,7 @@ title: "Elon Musk Book Recommendations"
 
 <p>Books recommended by Elon Musk, with his original comments and links to the source on X/Twitter.</p>
 
-<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="{{ site.baseurl }}/assets/style.css">
 
 <div class="book-grid">
 {% for book in site.books %}

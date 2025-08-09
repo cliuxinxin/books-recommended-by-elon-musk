@@ -1,6 +1,7 @@
 title: "Elon Musk Book Recommendations"
 description: "Books recommended by Elon Musk, with original quotes and tweet links."
 theme: minima
+baseurl: "/books-recommended-by-elon-musk"
 
 collections:
   books:
