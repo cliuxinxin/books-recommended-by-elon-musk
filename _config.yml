@@ -6,23 +6,24 @@ baseurl: "/books-recommended-by-elon-musk"
 collections:
   books:
     output: true
-    permalink: /books/:name
+    permalink: /:name
 
 defaults:
   - scope:
       path: ""
-      type: books
+      type: "books"
     values:
-      layout: book
-      cover: ""
-      author: ""
-      year: ""
-      quote: ""
-      source: ""
-      summary: ""
+      layout: "book"
 
 include:
   - assets
+
+exclude:
+  - README.md
+  - CLAUDE.md
+  - Gemfile
+  - Gemfile.lock
+  - .github
 
 plugins:
   - jekyll-seo-tag
