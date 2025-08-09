@@ -1,0 +1,13 @@
+<div class="book-card">
+  <a href="{{ book.url }}">
+    {% if book.cover %}
+      <img src="{{ book.cover }}" alt="{{ book.title }} cover" class="card-cover">
+    {% endif %}
+    <h3>{{ book.title }}</h3>
+  </a>
+  {% if book.author %}
+    <p class="author">{{ book.author }}{% if book.year %} ({{ book.year }}){% endif %}</p>
+  {% endif %}
+  <blockquote>{{ book.quote }}</blockquote>
+  <a class="source-link" href="{{ book.source }}" target="_blank">🔗 Original Tweet</a>
+</div>

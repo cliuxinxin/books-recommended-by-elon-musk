@@ -1,0 +1,18 @@
+---
+layout: default
+---
+
+<link rel="stylesheet" href="/assets/style.css">
+
+<div class="book-detail">
+  <img src="{{ page.cover }}" alt="{{ page.title }} cover" class="book-cover">
+  <div class="book-info">
+    <h1>{{ page.title }}</h1>
+    {% if page.author %}
+      <p class="author">{{ page.author }}{% if page.year %} ({{ page.year }}){% endif %}</p>
+    {% endif %}
+    <blockquote>{{ page.quote }}</blockquote>
+    <p>{{ page.summary }}</p>
+    <p><a href="{{ page.source }}" target="_blank">🔗 View Original Tweet</a></p>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+title: "Elon Musk Book Recommendations"
+description: "Books recommended by Elon Musk, with original quotes and tweet links."
+theme: minima
+
+collections:
+  books:
+    output: true
+    permalink: /books/:name
+
+defaults:
+  - scope:
+      path: ""
+      type: books
+    values:
+      layout: book
+      cover: ""
+      author: ""
+      year: ""
+      quote: ""
+      source: ""
+      summary: ""
+
+include:
+  - assets
+
+plugins:
+  - jekyll-seo-tag
